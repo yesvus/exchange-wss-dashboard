@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Github } from "lucide-react";
 
 export default function Dashboard() {
   const [selectedPair, setSelectedPair] = useState("BTCUSDT");
@@ -35,16 +36,28 @@ export default function Dashboard() {
           Binance WSS Dashboard
         </h1>
 
-        <Select onValueChange={setSelectedPair} defaultValue={selectedPair}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select Pair" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="BTCUSDT">BTC / USDT</SelectItem>
-            <SelectItem value="ETHUSDT">ETH / USDT</SelectItem>
-            <SelectItem value="SOLUSDT">SOL / USDT</SelectItem>
-          </SelectContent>
-        </Select>
+        <div className="flex items-center gap-3">
+          <a
+            href="https://github.com/yesvus/exchange-wss-stream"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="GitHub repository"
+          >
+            <Github className="w-5 h-5" />
+          </a>
+
+          <Select onValueChange={setSelectedPair} defaultValue={selectedPair}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select Pair" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="BTCUSDT">BTC / USDT</SelectItem>
+              <SelectItem value="ETHUSDT">ETH / USDT</SelectItem>
+              <SelectItem value="SOLUSDT">SOL / USDT</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <Card className="shadow-2xl">
