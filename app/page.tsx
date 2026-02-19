@@ -14,7 +14,7 @@ import {
 
 export default function Dashboard() {
   const [selectedPair, setSelectedPair] = useState("BTCUSDT");
-  const { price } = useBinanceStream(selectedPair);
+  const { price, messages } = useBinanceStream(selectedPair);
   const [chartData, setChartData] = useState<{ time: number; value: number }[]>(
     [],
   );
@@ -32,7 +32,7 @@ export default function Dashboard() {
     <main className="p-10 space-y-6 bg-background min-h-screen">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          Market Radar
+          Binance WSS Dashboard
         </h1>
 
         <Select onValueChange={setSelectedPair} defaultValue={selectedPair}>
@@ -60,6 +60,41 @@ export default function Dashboard() {
 
           <div className="rounded-md border border-border p-4 bg-background/50">
             <PriceChart data={chartData} symbol={selectedPair} />
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="shadow-2xl">
+        <CardHeader>
+          <CardTitle className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
+            WebSocket Stream
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="h-80 overflow-y-auto font-mono text-xs">
+            {messages.length === 0 ? (
+              <div className="p-4 text-muted-foreground">
+                Waiting for messages…
+              </div>
+            ) : (
+              messages.map((msg, i) => (
+                <div
+                  key={msg.id}
+                  className="flex gap-4 px-4 py-2 border-b border-border transition-opacity"
+                  style={{ opacity: 1 - i * 0.018 }}
+                >
+                  <span className="shrink-0 text-muted-foreground w-6 text-right">
+                    {msg.id}
+                  </span>
+                  <span className="shrink-0 text-muted-foreground">
+                    {msg.timestamp.slice(11, 23)}
+                  </span>
+                  <span className="text-foreground break-all">
+                    {JSON.stringify(msg.raw)}
+                  </span>
+                </div>
+              ))
+            )}
           </div>
         </CardContent>
       </Card>

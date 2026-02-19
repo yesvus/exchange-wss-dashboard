@@ -50,9 +50,9 @@ export const PriceChart: React.FC<PriceChartProps> = ({ data, symbol }) => {
     });
 
     const newSeries = chart.addSeries(AreaSeries, {
-      lineColor: "#ffffff",
-      topColor: "rgba(255, 255, 255, 0.2)",
-      bottomColor: "rgba(255, 255, 255, 0.0)",
+      lineColor: "rgb(251, 191, 36)",
+      topColor: "rgba(251, 191, 36, 0.5)",
+      bottomColor: "rgba(251, 191, 36, 0.05)",
       lineWidth: 2,
     });
 
