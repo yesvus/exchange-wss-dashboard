@@ -33,7 +33,7 @@ export default function Dashboard() {
     <main className="p-10 space-y-6 bg-background min-h-screen">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          Binance WSS Dashboard
+          WSS Visualizer (Binance)
         </h1>
 
         <div className="flex items-center gap-3">
