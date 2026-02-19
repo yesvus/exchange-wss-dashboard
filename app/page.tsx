@@ -47,7 +47,7 @@ export default function Dashboard() {
             <Github className="w-5 h-5" />
           </a>
 
-          <Select onValueChange={setSelectedPair} defaultValue={selectedPair}>
+          <Select onValueChange={(pair) => { setSelectedPair(pair); setChartData([]); }} defaultValue={selectedPair}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select Pair" />
             </SelectTrigger>
